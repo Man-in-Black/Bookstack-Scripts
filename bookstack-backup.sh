@@ -37,5 +37,9 @@ tar -zcf "$BACKUP_DIR.tar.gz" \
 # Cleanup non-archive directory
 rm -rf "$BACKUP_DIR"
 
+# delete old backups
+BACKUPDAYS=14
+/usr/bin/find $BACKUP_ROOT_DIR/bookstack_backup_*tar.gz -mtime +$BACKUPDAYS -exec rm -r {} \;
+
 echo "Backup complete, archive stored at:"
 echo "$BACKUP_DIR.tar.gz"
